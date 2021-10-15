@@ -52,9 +52,9 @@ def before():
     else:
         song_index -= 1
     song_title.config(text=list_song_title[song_index])
-    mixer.music.load(f"songs/song{song_index}")
+    mixer.music.load(f"songs/{list_song_title[song_index]}")
     mixer.music.play()
-    mixer.music.queue(f"songs/song{(song_index + 1) % len(list_song_title)}")
+    mixer.music.queue(f"songs/{list_song_title[(song_index + 1) % len(list_song_title)]}")
     song_time.config(text="0:00:00")
     current_song_time = 0
     print("이전 곡으로 넘어갑니다.")
@@ -78,7 +78,7 @@ def volume_down():
 def play_next_music(event):
     global song_index
     song_index = (song_index + 1) % len(list_song_title) # 인덱스 + 1 증가
-    mixer.music.load(f"songs/song{song_index}")
+    mixer.music.load(f"songs/{list_song_title[song_index]}")
     mixer.music.play()
 
 def rewind():
@@ -134,7 +134,7 @@ win.mainloop() # 반복문
 # 5. 현재 시간 [V]
 # 6. 불륨 조절 [V]
 # 7. 버튼 클릭 시, 각 버튼에 맞는 명령 수행 [V]
-# 8. 곡이 끝난 후 자동재생 [보류]
+# 8. 곡이 끝난 후 자동재생 [V]
 # 9. + 10초 -10초 [보류]
 # 10. 노래 자동 추가 기능 [V]
 # 믹서 init -> music.load -> music.play -> music.pause
